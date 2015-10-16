@@ -1,0 +1,7 @@
+Type: IPython Notebook Extension
+Name: ExecuteTimeAdv
+Description: Display when each cell has been executed and how long it took. Store this information as metadata and show if the cell has already been executed during this sessions.
+Link: readme.md
+Icon: icon.png
+Main: ExecuteTimeAdv.js
+Compatibility: 4.x

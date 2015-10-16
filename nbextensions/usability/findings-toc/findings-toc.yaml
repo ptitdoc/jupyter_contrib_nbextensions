@@ -1,0 +1,7 @@
+Type: IPython Notebook Extension
+Name: Findings Table of Content
+Description: The Findings ToC extension displays a table of content of the findings that have been found for each paragraph.
+Link: readme.md
+Icon: icon.png
+Main: main.js
+Compatibility: 4.x
