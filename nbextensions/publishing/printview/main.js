@@ -22,6 +22,7 @@ define([
         if (config.data.hasOwnProperty('printview_nbconvert_options') ) {
             nbconvert_options = config.data.printview_nbconvert_options;
             if (nbconvert_options.search('pdf') > 0) extension = '.pdf';
+            if (nbconvert_options.search('slides') > 0) extension = '.slides.html';
         }
         if (config.data.hasOwnProperty('printview_open_tab') ) {
             if (typeof(config.data.printview_open_tab) === "boolean") {
@@ -38,15 +39,15 @@ define([
         events.off('notebook_saved.Notebook');
 		var kernel = IPython.notebook.kernel;
 		var name = IPython.notebook.notebook_name;
-		var command = 'import os; os.system(\"jupyter nbconvert ' + nbconvert_options + ' ' + name + '\")';
+		var command = 'import os; os.system(\'jupyter nbconvert ' + nbconvert_options + ' \"' + name + '\"\')';
 		function callback() {
 			if (open_tab === true) {
-				var url = name.split('.ipynb')[0] + extension;
+				var url = utils.splitext(name)[0] + extension;
 				window.open(url, '_blank');
 			}
 		}
 		kernel.execute(command, { shell: { reply : callback } });
-        $('#doPrintView').blur()
+        $('#doPrintView').blur();
 	};
 
     var nbconvertPrintView = function () {
@@ -65,6 +66,7 @@ define([
 			}
 		]);
 	};
+
 	return {
         load_ipython_extension : load_ipython_extension
     };
