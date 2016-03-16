@@ -61,6 +61,12 @@
     content: "\f06a  (incompatible, enabled)";
 }
 
+/* bugfix for using .container with padding: we need 15px extra to width. */ 
+@media (min-width: 768px) and (max-width: 783px) {
+    .container {
+        width: auto;
+    }
+}
 /* styles for the readme */
 
 .nbext-readme > .nbext-readme-contents {

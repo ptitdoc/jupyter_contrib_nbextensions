@@ -1,3 +1,5 @@
+*~
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -14,3 +16,7 @@ coverage.xml
 docs/_build/
 
 .idea
+
+#pip install
+Python_contrib_nbextensions.egg-info/
+dist/
