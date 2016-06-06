@@ -47,15 +47,15 @@ define([
 		collapsible_headings_size_toggle_controls_by_level : true,
 		collapsible_headings_toggle_open_icon : 'fa-caret-down',
 		collapsible_headings_toggle_closed_icon : 'fa-caret-right',
-		collapsible_headings_toggle_color : '#aaa',
+		collapsible_headings_toggle_color : '#aaaaaa',
 		collapsible_headings_use_shortcuts : true,
 		collapsible_headings_shortcut_collapse : 'left',
 		collapsible_headings_shortcut_uncollapse: 'right',
 		collapsible_headings_shortcut_select : 'shift-right',
 		collapsible_headings_show_section_brackets : false,
-		collapsible_headings_section_bracket_width: 10,
-		collapsible_headings_show_ellipsis: false,
-		collapsible_headings_select_reveals: true
+		collapsible_headings_section_bracket_width : 10,
+		collapsible_headings_show_ellipsis : true,
+		collapsible_headings_select_reveals : true
 	};
 
 	// function to update params with any specified in the server's config file
@@ -155,11 +155,13 @@ define([
 						.addClass('collapsible_headings_toggle')
 						.css('color', params.collapsible_headings_toggle_color)
 						.append('<div><i class="fa fa-fw"></i></div>')
-						.on('click', function () { toggle_heading(cell); })
 						.appendTo(cell.element.find('.input_prompt'));
+					var clickable = cht.find('i');
 					if (params.collapsible_headings_make_toggle_controls_buttons) {
 						cht.addClass('btn btn-default');
+						clickable = cht;
 					}
+					clickable.on('click', function () { toggle_heading(cell); });
 				}
 				// Update the cell's toggle control classes
 				var hwrap = cht.children();
@@ -303,8 +305,7 @@ define([
 		var index = 0;
 		var section_level = 0;
 		var show = true;
-		if (cell !== undefined) {
-			cell = find_header_cell(cell);
+		if (cell !== undefined && (cell = find_header_cell(cell)) !== undefined) {
 			index = Jupyter.notebook.find_cell_index(cell) + 1;
 			section_level = get_cell_level(cell);
 			show = cell.metadata.heading_collapsed !== true;
@@ -321,9 +322,11 @@ define([
 			if (show && level <= hide_above) {
 				cell.element.slideDown('fast');
 				hide_above = is_collapsed_heading(cell) ? level : 7;
+				delete cell.metadata.hidden;
 			}
 			else {
 				cell.element.slideUp('fast');
+				cell.metadata.hidden = true;
 				continue;
 			}
 

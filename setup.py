@@ -48,6 +48,7 @@ if 'bdist_wheel' in argv:
 if 'install' in argv: #-----------------------------------
     print("Running source install...")
     import install
+    install.main()
     print('Done!')
     print("Configuring extensions...")
     import configure_nbextensions
@@ -89,7 +90,15 @@ setup(name='Python-contrib-nbextensions',
       keywords=['IPython Jupyter notebook extension'],
       classifiers=[clsf for clsf in classifiers.split('\n') if clsf],
       license='BSD',
-      install_requires = ['ipython >=4','jupyter','psutil >=2.2.1','pyyaml'],
+      install_requires=[
+          'jupyter_core',
+          'nbconvert',
+          'notebook',
+          'psutil >= 2.2.1',
+          'pyyaml',
+          'tornado',
+          'traitlets',
+      ],
       #packages=['IPython-contrib-nbextensions'],
       # **addargs
 )
