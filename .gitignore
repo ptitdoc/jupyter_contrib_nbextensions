@@ -15,6 +15,10 @@ coverage.xml
 
 # Sphinx documentation
 docs/_build
+# nbextensions installed as part of sphinx-build
+docs/source/nbextensions
+# auto-generated Sphinx files
+docs/source/nbextensions.rst
 
 .idea
 
