@@ -158,6 +158,8 @@
                 'href': h.find('.anchor-link').attr('href'),
                 'data-toc-modified-id': toc_mod_id,
             });
+        // Propagate the user-defined class to the title
+        a.addClass(h.attr("class"));
         // get the text *excluding* the link text, whatever it may be
         var hclone = h.clone();
         hclone = removeMathJaxPreview(hclone);
