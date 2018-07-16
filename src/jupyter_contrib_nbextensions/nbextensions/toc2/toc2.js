@@ -165,6 +165,9 @@
         hclone = removeMathJaxPreview(hclone);
         a.html(hclone.html());
         a.on('click', callback_toc_link_click);
+        // Append toc Skip span to avoid lookup loop when doing
+        // dom_search_pattern lookup related to the user-defined class
+        a.append('<span class="tocSkip"></span>')
         return a;
     };
 
